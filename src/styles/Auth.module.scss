@@ -1,5 +1,50 @@
+@import "colors";
+
 .popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 1rem 2rem;
     font: {
         size: 1.25rem;
+    }
+    text-align: center;
+
+    form {
+        margin: .5rem;
+        display: flex;
+        flex-direction: column;
+
+        input {
+            margin: .25rem;
+            padding: .25rem;
+            border-radius: .25rem;
+
+            &:focus, &:focus-visible, &:focus-within,
+            &, &:active {
+                border: none;
+                outline: none;
+            }
+        }
+    }
+}
+
+.button {
+    cursor: pointer;
+    margin: .25rem;
+    padding: .5rem;
+    border-radius: .25rem;
+    background-color: $main-primary;
+    color: $main-bg;
+    transition: background-color 0.2s ease-in;
+
+    &:hover {
+        background-color: lighten($main-primary, 15%);
+    }
+    
+    &, &:active, &:focus, &:focus-visible, &:focus-within {
+        border: none;
+        outline: none;
     }
 }
