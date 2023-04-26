@@ -2,6 +2,7 @@
 
 .popup {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100%;
@@ -20,6 +21,7 @@
             margin: .25rem;
             padding: .25rem;
             border-radius: .25rem;
+            background-color: $main-bg;
 
             &:focus, &:focus-visible, &:focus-within,
             &, &:active {
@@ -46,5 +48,16 @@
     &, &:active, &:focus, &:focus-visible, &:focus-within {
         border: none;
         outline: none;
+    }
+}
+
+.error {
+    background-color: transparentize($main-bg , .75);
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    color: $poppy;
+    font: {
+        size: 1rem;
+        weight: 300;
     }
 }

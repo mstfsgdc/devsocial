@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Roboto } from "next/font/google";
 import styles from "@/styles/Auth.module.scss";
 import Head from "next/head";
@@ -23,8 +23,15 @@ export default function Auth() {
   const [password, setPassword] = useState("");
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [error, setError] = useState({ error: false, errorMessage: "" });
   const [isUserRegistered, setIsUserRegistered] = useState(false);
+  const [error, setError] = useState({ error: false, errorMessage: "" });
+  
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setError({ error: false, errorMessage: "" });
+    }, 10 * 1000);
+    return () => clearTimeout(timeout);
+  }, [error]);
 
   function handleLogin(e) {
     e.preventDefault();
@@ -34,7 +41,7 @@ export default function Auth() {
         const user = userCredential.user;
         setLoggedIn(true);
         console.log(user);
-        alert(`Hoş geldiniz, ${user.displayName}.`)
+        alert(`Hoş geldiniz, ${user.displayName}.`);
       })
       .catch((error) => {
         // Giriş başarısız
@@ -74,6 +81,12 @@ export default function Auth() {
       </Head>
       <main>
         <div className={`${styles.popup} ${roboto.className}`}>
+          {error.error && (
+            <div className={styles.error}>
+              <span>Error</span>
+              <p>{error.errorMessage}</p>
+            </div>
+          )}
           {isUserRegistered ? (
             <div className="login">
               <h1>Login</h1>
